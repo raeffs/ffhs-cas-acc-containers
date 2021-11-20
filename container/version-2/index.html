@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;700&display=swap"
+            rel="stylesheet"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"
+            integrity="sha256-xUHvBjJ4hahBW8qN9gceFBibSFUzbe9PNttUvehITzY="
+            crossorigin="anonymous"
+        ></script>
+        <style>
+            body {
+                display: grid;
+                gap: 2vw;
+                grid-template-columns: 30% auto;
+                padding: 0;
+                margin: 0;
+                height: 100vh;
+                align-content: center;
+                align-items: baseline;
+                font-family: "Outfit", sans-serif;
+                font-size: 2.5vw;
+            }
+            h1 {
+                font-weight: 700;
+                grid-column: 2;
+                background: linear-gradient(45deg, #1ac59a, #05fe9c);
+                background-clip: border-box;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            small {
+                font-size: 2vw;
+            }
+            div:nth-of-type(2n - 1) {
+                text-align: right;
+                color: #888;
+                font-size: smaller;
+            }
+            span {
+                display: flex;
+                justify-content: end;
+                align-self: center;
+            }
+            img {
+                width: 12vw;
+                height: 12vw;
+            }
+        </style>
+    </head>
+    <body>
+        <span id="qrcode"></span>
+        <h1>Hello Cloud! <small>Version 2</small></h1>
+        <div>Environment:</div>
+        <div>environment_name</div>
+        <div>Server Address:</div>
+        <div>server_address</div>
+        <div>Server Name:</div>
+        <div>server_hostname</div>
+        <div>Request ID:</div>
+        <div>request_id</div>
+        <div>Timestamp:</div>
+        <div>server_date</div>
+        <script>
+            (function () {
+                new QRCode(document.getElementById("qrcode"), {
+                    text: window.location.href,
+                    width: 512,
+                    height: 512,
+                    colorDark: "#333",
+                    colorLight: "#fff",
+                    correctLevel: QRCode.CorrectLevel.H,
+                });
+            })();
+        </script>
+    </body>
+</html>

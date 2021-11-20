@@ -1,0 +1,4 @@
+FROM nginxdemos/hello:latest
+COPY hello.conf /hello.conf.template
+COPY index.html /usr/share/nginx/html/index.html
+CMD ["/bin/sh" , "-c" , "envsubst '$ENVIRONMENT_NAME' < /hello.conf.template > /etc/nginx/conf.d/hello.conf && exec nginx -g 'daemon off;'"]
