@@ -33,6 +33,11 @@ class AppService : Web.WebApp
                 },
                 new Web.Inputs.NameValuePairArgs
                 {
+                    Name = "WEBSITES_PORT",
+                    Value = "8080"
+                },
+                new Web.Inputs.NameValuePairArgs
+                {
                     Name = "ENVIRONMENT_NAME",
                     Value = "Azure App Service"
                 }

@@ -12,9 +12,9 @@ class AppServicePlan : Web.AppServicePlan
         Reserved = true,
         Sku = new Web.Inputs.SkuDescriptionArgs
         {
-            Capacity = 1,
-            Name = "B1",
-            Tier = "Basic",
+            Capacity = 5,
+            Name = "P1V3",
+            Tier = "PremiumV3",
         }
     };
 }
