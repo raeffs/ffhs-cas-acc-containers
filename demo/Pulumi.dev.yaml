@@ -1,5 +1,5 @@
 config:
-    azure-native:location: northeurope
-    demo:containerAppEnvironmentName: ffhs-acc-container-app-env
-    demo:resourceGroupName: ffhs-acc-containers-on-azure
-    demo:subscriptionId: f47b5310-b59b-4d7f-a247-c7b21b571b41
+  azure-native:location: northeurope
+  demo:containerAppEnvironmentName: ffhs-acc-container-app-env
+  demo:resourceGroupName: ffhs-acc-containers-on-azure
+  demo:subscriptionId: f47b5310-b59b-4d7f-a247-c7b21b571b41

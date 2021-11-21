@@ -1,0 +1,61 @@
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: hello-v1
+  spec:
+    replicas: 3
+    selector:
+      matchLabels:
+        app: hello-app
+    template:
+      metadata:
+        labels:
+          app: hello-app
+          version: v1
+      spec:
+        containers:
+          - name: hello
+            image: docker.io/raeffs/hello:version-1
+            ports:
+              - containerPort: 8080
+            env:
+              - name: ENVIRONMENT_NAME
+                value: Azure Kubernetes Service
+
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: hello-v2
+  spec:
+    replicas: 3
+    selector:
+      matchLabels:
+        app: hello-app
+    template:
+      metadata:
+        labels:
+          app: hello-app
+          version: v2
+      spec:
+        containers:
+          - name: hello
+            image: docker.io/raeffs/hello:version-2
+            ports:
+              - containerPort: 8080
+            env:
+              - name: ENVIRONMENT_NAME
+                value: Azure Kubernetes Service
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: hello
+    annotations:
+      service.beta.kubernetes.io/azure-dns-label-name: ffhs-acc-aks
+  spec:
+    type: LoadBalancer
+    ports:
+      - port: 80
+        targetPort: 8080
+    selector:
+      app: hello-app
