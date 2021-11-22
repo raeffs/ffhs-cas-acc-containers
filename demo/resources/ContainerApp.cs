@@ -50,7 +50,7 @@ class ContainerApp : Web.ContainerApp
         {
             Ingress = new Web.Inputs.IngressArgs
             {
-                TargetPort = 8080,
+                TargetPort = 80,
                 External = true
             }
         }

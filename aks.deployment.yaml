@@ -17,7 +17,7 @@
           - name: hello
             image: docker.io/raeffs/hello:version-1
             ports:
-              - containerPort: 8080
+              - containerPort: 80
             env:
               - name: ENVIRONMENT_NAME
                 value: Azure Kubernetes Service
@@ -41,7 +41,7 @@
           - name: hello
             image: docker.io/raeffs/hello:version-2
             ports:
-              - containerPort: 8080
+              - containerPort: 80
             env:
               - name: ENVIRONMENT_NAME
                 value: Azure Kubernetes Service
@@ -56,6 +56,5 @@
     type: LoadBalancer
     ports:
       - port: 80
-        targetPort: 8080
     selector:
       app: hello-app
