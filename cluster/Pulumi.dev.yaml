@@ -1,0 +1,3 @@
+config:
+  azure-native:location: northeurope
+  cluster:resourceGroupName: ffhs-acc-containers-on-azure

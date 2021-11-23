@@ -44,16 +44,7 @@ public class AutoRegistrationStack<TStack> : AutoRegistrationStack
 {
     public AutoRegistrationStack(AutoRegistrationStackOptions options)
         : base(GetOptions(options))
-    {
-        var entryType = typeof(TStack);
-        var resourceTypes = entryType.Assembly.GetTypes()
-            .Where(t => t.GetCustomAttributes(typeof(ResourceInstanceAttribute), false).Any());
-
-        foreach (var type in resourceTypes)
-        {
-            GetOrCreateInstance(type);
-        }
-    }
+    { }
 
     private static StackOptions GetOptions(AutoRegistrationStackOptions options) => new StackOptions
     {

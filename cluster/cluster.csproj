@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\shared\shared.csproj" />
     <PackageReference Include="Pulumi.AzureNative" Version="1.*" />
-    <PackageReference Include="Pulumi.Kubernetes" Version="3.*" />
   </ItemGroup>
 
 </Project>

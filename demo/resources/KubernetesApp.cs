@@ -5,12 +5,15 @@ using Pulumi.Kubernetes.Types.Inputs.Core.V1;
 using Pulumi.Kubernetes.Core.V1;
 using static AutoRegistrationStack;
 
-[ResourceInstance]
-class HelloAppService : Service {
+class KubernetesApp : Service {
 
-    private HelloAppService()
-        : base("ffhs-acc-aks-service-", GetArgs(), GetOptions())
-    {}
+    public Pulumi.Output<string> Fqdn { get; set; }
+
+    private KubernetesApp()
+        : base("ffhs-acc-aks-app", GetArgs(), GetOptions())
+    {
+        this.Fqdn = Pulumi.Output.Create("ffhs-acc-aks.northeurope.cloudapp.azure.com");
+    }
 
     private static ServiceArgs GetArgs() => new ServiceArgs
     {
@@ -38,30 +41,32 @@ class HelloAppService : Service {
 
     private static Pulumi.CustomResourceOptions GetOptions() => new Pulumi.CustomResourceOptions
     {
-        DependsOn = GetResource<KubernetesCluster>()
+        DependsOn =
+        {
+            GetResource<KubernetesDeploymentV1>(),
+            GetResource<KubernetesDeploymentV2>()
+        }
     };
 }
 
-[ResourceInstance]
-class HelloAppDeploymentV1 : HelloAppDeployment {
+class KubernetesDeploymentV1 : KubernetesDeployment {
 
-    private HelloAppDeploymentV1()
+    private KubernetesDeploymentV1()
         : base(1)
     {}
 }
 
-[ResourceInstance]
-class HelloAppDeploymentV2 : HelloAppDeployment {
+class KubernetesDeploymentV2 : KubernetesDeployment {
 
-    private HelloAppDeploymentV2()
+    private KubernetesDeploymentV2()
         : base(2)
     {}
 }
 
-class HelloAppDeployment : Deployment {
+class KubernetesDeployment : Deployment {
 
-    protected HelloAppDeployment(int version)
-        : base($"ffhs-acc-aks-deployment-v{version}-", GetArgs(version), GetOptions())
+    protected KubernetesDeployment(int version)
+        : base($"ffhs-acc-aks-deployment-v{version}", GetArgs(version))
     {}
 
     private static DeploymentArgs GetArgs(int version) => new DeploymentArgs
@@ -109,10 +114,5 @@ class HelloAppDeployment : Deployment {
                 }
             }
         }
-    };
-
-    private static Pulumi.CustomResourceOptions GetOptions() => new Pulumi.CustomResourceOptions
-    {
-        DependsOn = GetResource<KubernetesCluster>()
     };
 }

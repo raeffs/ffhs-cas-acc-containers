@@ -3,11 +3,12 @@ using CI = Pulumi.AzureNative.ContainerInstance;
 class ContainerInstance : CI.ContainerGroup
 {
     private ContainerInstance()
-        : base("ffhs-acc-container-instance-", GetArgs())
+        : base("ffhs-acc-container-instance", GetArgs())
     { }
 
     private static CI.ContainerGroupArgs GetArgs() => new CI.ContainerGroupArgs
     {
+        ContainerGroupName = "ffhs-acc-container-instance",
         Containers =
         {
             new CI.Inputs.ContainerArgs

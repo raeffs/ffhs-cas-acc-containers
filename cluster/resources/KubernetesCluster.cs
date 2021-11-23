@@ -1,15 +1,14 @@
 using CS = Pulumi.AzureNative.ContainerService;
 
-[ResourceInstance]
 class KubernetesCluster : CS.ManagedCluster
 {
-
     private KubernetesCluster()
-        : base("ffhs-acc-aks-", GetArgs())
+        : base("ffhs-acc-aks", GetArgs())
     { }
 
     private static CS.ManagedClusterArgs GetArgs() => new CS.ManagedClusterArgs
     {
+        ResourceName = "ffhs-acc-aks",
         DnsPrefix = "ffhs-acc-aks",
         EnableRBAC = false,
         KubernetesVersion = "1.20.9",

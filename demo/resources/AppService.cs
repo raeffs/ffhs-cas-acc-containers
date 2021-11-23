@@ -4,7 +4,7 @@ using Web = Pulumi.AzureNative.Web;
 class AppService : Web.WebApp
 {
     private AppService()
-        : base("ffhs-acc-app-service-", GetArgs())
+        : base("ffhs-acc-app-service", GetArgs())
     { }
 
     private static Web.WebAppArgs GetArgs() => new Web.WebAppArgs

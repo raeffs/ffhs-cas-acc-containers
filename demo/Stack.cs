@@ -11,12 +11,16 @@ class Stack : AutoRegistrationStack<Stack>
     [Output]
     public Output<string> ContainerAppAddress { get; set; }
 
+    [Output]
+    public Output<string> KubernetesAppAddress { get; set; }
+
     public Stack()
         : base(GetOptions())
     {
         this.ContainerInstanceAddress = GetResource<ContainerInstance>().IpAddress.Apply(ipAddress => ipAddress!.Fqdn);
         this.AppServiceAddress = GetResource<AppService>().DefaultHostName;
         this.ContainerAppAddress = GetResource<ContainerApp>().Configuration.Apply(config => config!.Ingress!.Fqdn);
+        this.KubernetesAppAddress = GetResource<KubernetesApp>().Fqdn;
     }
 
     private static AutoRegistrationStackOptions GetOptions() => new AutoRegistrationStackOptions

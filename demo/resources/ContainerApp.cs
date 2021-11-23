@@ -4,7 +4,7 @@ using Web = Pulumi.AzureNative.Web;
 class ContainerApp : Web.ContainerApp
 {
     private ContainerApp()
-        : base("ffhs-acc-container-app-", GetArgs())
+        : base("ffhs-acc-container-app", GetArgs())
     { }
 
     private static Web.ContainerAppArgs GetArgs() => new Web.ContainerAppArgs
@@ -31,7 +31,7 @@ class ContainerApp : Web.ContainerApp
             RevisionSuffix = "version-1",
             Scale = new Web.Inputs.ScaleArgs
             {
-                MinReplicas = 0,
+                MinReplicas = 2,
                 MaxReplicas = 5,
                 Rules = new Web.Inputs.ScaleRuleArgs
                 {
